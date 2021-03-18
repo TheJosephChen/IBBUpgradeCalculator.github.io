@@ -1,0 +1,161 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Idle Ball Breaker Calculator</title>
+  <meta name="description" content="Unofficial Calculator for IBB Ball Upgrades">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="selector" class="col-2">
+        <div id="radios">
+            <h3>Step 1: Select Your Ball</h3>
+            <h4>Unlock at:</h4>
+            <form>
+                <input type="radio" name="unlock" value="radBasic"> Basic Ball <br>
+                <input type="radio" name="unlock" value="rad175"> $175 Unlock <br>
+                <input type="radio" name="unlock" value="rad75k"> $7.5k Unlock <br>
+                <input type="radio" name="unlock" value="rad175k"> $175k Unlock <br>
+                <input type="radio" name="unlock" value="rad15M"> $15M Unlock <br>
+                <input type="radio" name="unlock" value="rad400B"> $400B Unlock <br>
+                <input type="radio" name="unlock" value="rad10q"> $10q Unlock <br>
+                <input type="radio" name="unlock" value="rad10s"> $10s Unlock <br>
+                <input type="radio" name="unlock" value="rad10O"> $10O Unlock <br>
+            </form>
+            <h4>Available balls:</h4>
+            <select id="ballOptions" dir="ltr"></select>
+        </div>
+    </div>
+
+    <div id="calculator" class="col-9">
+        <div id="checks" class="col-12">
+            <h3>Step 2: Set Your Badges, Perks, Cards</h3>
+                    <form id="ballNum" class="col-12">
+                        <div class="col-3">
+                            <input type="checkbox" id="ballRed" name="ballRed" value="false">
+                            <label for="ballRed">Use New Ball Cost Reduction Badge</label><br>
+                            <label for="ballRedAmnt">Value:</label>
+                            <input type="number" id="ballRedAmnt" name="ballRed" disabled>
+                        </div>
+                        <div class="col-9">
+                            <input type="checkbox" id="ballRedPk" name="ballRedPk" value="false">
+                            <label for="ballRedPk">Use New Ball Cost Reduction Perk</label><br>
+                            <label for="ballRedPkAmnt">Value:</label>
+                            <input type="number" id="ballRedPkAmnt" name="ballRedPk" disabled>
+                        </div>
+                        
+                    </form>
+
+                <form id="ballSpeed" class="col-12">
+                    <div class="col-3">
+                        <input type="checkbox" id="speedRedBadge" name="speedRedBadge" value="false">
+                        <label for="speedRedBadge">Use Ball Speed Cost Reduction Badge</label><br>
+                        <label for="speedRedBadgeAmnt">Value:</label>
+                        <input type="number" id="speedRedBadgeAmnt" name="speedRedBadge" disabled>
+                    </div>
+                    <div class="col-3">
+                        <input type="checkbox" id="speedRedPk" name="speedRedPk" value="false">
+                        <label for="speedRedPk">Use Ball Speed Cost Reduction Perk</label><br>
+                        <label for="speedRedPkAmnt">Value:</label>
+                        <input type="number" id="speedRedPkAmnt" name="speedRedPk" disabled>
+                    </div>
+                    <div class="col-3">
+                        <input type="checkbox" id="speedBadge" name="speedBadge" value="false">
+                        <label for="speedBadge">Use Ball Speed Badge</label><br>
+                        <label for="speedBadgeAmnt">Value:</label>
+                        <input type="number" id="speedBadgeAmnt" name="speedBadge" disabled>
+                    </div>
+                    <div class="col-3">
+                        <input type="checkbox" id="spdCard" name="spdCard" value="false">
+                        <label for="spdCard">Use Ball Speed Card</label><br>
+                        <label for="spdCardAmnt">Value:</label>
+                        <input type="number" id="spdCardAmnt" name="spdCard" disabled>
+                    </div>
+                    
+                </form>
+
+                <form id="ballPower" class="col-12">
+                    
+                    <div class="col-3">
+                        <input type="checkbox" id="powerRedBadge" name="powerRedBadge" value="false">
+                        <label for="powerRedBadge">Use Ball Power Cost Reduction Badge</label><br>
+                        <label for="powerRedBadgeAmnt">Value:</label>
+                        <input type="number" id="powerRedBadgeAmnt" name="powerRedBadge" disabled>
+                    </div>
+                    <div class="col-3">
+                        <input type="checkbox" id="powerRedPk" name="powerRedPk" value="false">
+                        <label for="powerRedPk">Use Ball Power Cost Reduction Perk</label><br>
+                        <label for="powerRedPkAmnt">Value:</label>
+                        <input type="number" id="powerRedPkAmnt" name="powerRedPk" disabled>
+                    </div>
+                    <div class="col-3">
+                        <input type="checkbox" id="powerBadge" name="powerBadge" value="false">
+                        <label for="powerBadge">Use Ball Power Badge</label><br>
+                        <label for="powerBadgeAmnt">Value:</label>
+                        <input type="number" id="powerBadgeAmnt" name="powerBadge" disabled>
+                    </div>
+                    <div class="col-3">
+                        <input type="checkbox" id="powCard" name="powCard" value="false">
+                        <label for="powCard">Use Ball Power Card</label><br>
+                        <label for="spowCardAmnt">Value:</label>
+                        <input type="number" id="powCardAmnt" name="powCard" disabled>
+                    </div>
+                </form>
+                <form id="other" class="col-12">
+                    <div class="col-3">
+                        <input type="checkbox" id="specCard" name="specCard" value="false">
+                        <label for="specCard">Use Ball Specialization Card</label><br>
+                        <label for="specCardAmnt">Value:</label>
+                        <input type="number" id="specCardAmnt" name="specCard" disabled>
+                    </div>
+                    <div class="col-9">
+                        <input type="checkbox" id="qcCard" name="qcCard" value="false">
+                        <label for="qcCard">Use Quality Control Card</label><br>
+                        <label for="qcCardAmnt">Value:</label>
+                        <input type="number" id="qcCardAmnt" name="qcCard" disabled>
+                    </div>
+                </form>
+        </div>
+        <div id="upgrades">
+            <h3 class="col-12">Step 3: Choose Your Upgrades</h3>
+            <h2 class="col-12" id="ballName">Your Selected Ball</h2>
+            <div id="ballNum" class="col-4">
+                <h2>Ball Number</h2>
+                <label for="curLvN">Current level:</label>
+                <input type="number" id="curLvN" name="level" value="0"><br><br>
+                <label for="toLvN">Upgrade to level:</label>
+                <input type="number" id="toLvN" name="level" value="0"><br><br>
+                <p id="ballCost">Total Upgrade Cost:</p>
+            </div>
+            <div id="ballSpd" class="col-4">
+                <h2>Ball Speed</h2>
+                <label for="curLvS">Current level:</label>
+                <input type="number" id="curLvS" name="level" value="0"><br>
+                <p id="curSpd">Current speed value:</p>
+                <label for="toLvS">Upgrade to level:</label>
+                <input type="number" id="toLvS" name="level" value="0"><br>
+                <p id="newSpd">New speed value:</p>
+                <p id="spdCost">Total Upgrade Cost:</p>
+            </div>
+            <div id="ballPow" class="col-4">
+                <h2>Ball Power</h2>
+                <label for="curLvP">Current level:</label>
+                <input type="number" id="curLvP" name="level" value="0"><br>
+                <p id="curPow">Current power value:</p>
+                <label for="toLvP">Upgrade to level:</label>
+                <input type="number" id="toLvP" name="level" value="0"><br>
+                <p id="newPow">New speed value:</p>
+                <p id="powCost">Total Upgrade Cost:</p>
+            </div>
+        </div>
+
+    </div>
+    <script src="js/ball.js"></script>
+    <script src="js/calculator.js"></script>
+</body>
+</html>
