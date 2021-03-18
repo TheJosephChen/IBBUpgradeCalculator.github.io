@@ -12,6 +12,21 @@
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
 
+body {
+    float: left;
+    background: black;
+    color: #fff;
+    border: 0.4rem solid #fff;
+    border-radius: 2rem;
+    box-shadow: 0 0 1rem rgb(0, 255, 0), 
+                inset 0 0 1rem rgb(0, 255, 0);
+
+}
+
+#container {
+    margin: 10px;
+}
+
 [class*="col-"] {
     float: left;
   }
@@ -33,12 +48,12 @@ input[type="number"], input[type="text"] {
 }
 
 table, th, td {
-    border: 1px solid black;
+    border: 1px solid #fff;
     border-collapse: collapse;
 }
 
 table {
-    empty-cells: show;
+    margin-bottom: 20px;
 }
 th[class*="col-"] {
     float:none;
