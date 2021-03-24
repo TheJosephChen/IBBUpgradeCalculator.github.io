@@ -2,7 +2,7 @@
 
     $(document).ready(function() {
             // add event listener to radio buttons
-            $("input[name='unlock']").on("click", displaySelection);
+            $("input[name='unlock']").click(displaySelection);
 
             // set hidden default option for ball select
             $ballOptions = $("#ballOptions");
@@ -11,13 +11,18 @@
             ballOptions.add(defaultOption);
 
             // add event listener to ball select
-            $("#ballOptions").on("change", setupCalculator);
-            // add event listener to number inputs
-            $("input[name='level']").on("input", calculateCost);
+            $("#ballOptions").change(setupCalculator);
+
+            // add event listener to calculator inputs
+            $("input[name='level']").change(calculateLevelCost);
+            $("input[name='speed']").change(calculateSpeedCost);
+            $("input[name='power']").change(calculatePowerCost);
         }
     );
 
 
+    // Changes dropdown selection ball options according to which radio button 
+    // is checked
     function displaySelection() {
         // show select box
         $ballOptions = $("#ballOptions");
@@ -57,12 +62,13 @@
         }
     }
 
+    // Set up the calculator default values based on the ball selected from 
+    // the dropdown
     function setupCalculator() {
         var ball;
         var ballName = this.value;
         
         for (var i = 0; i < allBalls.length; i++) {
-            console.log(allBalls[i].name);
             if (ballName == allBalls[i].name) {
                 ball = allBalls[i];
                 break;
@@ -73,8 +79,15 @@
         $("#curPow").text("Current power value: " + ball.power);
     }
 
-    function calculateCost() {
-        console.log(this.id);
+    function calculateLevelCost() {
+        console.log("level");
     }
 
+    function calculateSpeedCost() {
+        console.log("speed");
+    }
+
+    function calculatePowerCost() {
+        console.log("power");
+    }
 })();
