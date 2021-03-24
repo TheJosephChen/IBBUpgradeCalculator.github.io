@@ -2,7 +2,7 @@
 
     //Globals
     var RADIO_INDEX = 0;
-
+    var CURRENT_BALL_INDEX;
 
 
     $(document).ready(function() {
@@ -75,15 +75,18 @@
     // the dropdown
     function setupCalculator() {
         var ball;
+        var index;
         var ballName = this.value;
         
         for (var i = 0; i < allBalls.length; i++) {
             if (ballName == allBalls[i].name) {
                 ball = allBalls[i];
+                index = i;
                 break;
             }
         }
         $("#ballName").text(ball.name + " Ball");
+        CURRENT_BALL_INDEX = index;
     }
 
     function calculateLevelCost() {
