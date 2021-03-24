@@ -89,16 +89,31 @@
         CURRENT_BALL_INDEX = index;
     }
 
+    // Calculates the total cost to upgrade from the starting to end level 
+    // based on user inputs for levels and cost
+    // TODO: max level for pierce is 40
     function calculateLevelCost() {
-        
-        console.log("level");
+        var curLv = $("#curLvN").val();
+        var curCost = parseInt($("#curCostN").val());
+        var toLv = $("#toLvN").val();
+        var totalCost = 0;
+
+        var lvDiff = toLv - curLv;
+
+        if (lvDiff > 0) {
+            console.log("Hi");
+            for (var i = 0; i < lvDiff; i++) {
+                totalCost += curCost;
+                curCost *= 1.9;
+            }
+        }
+
+        $("#ballCost").text("Total Upgrade Cost: " + Math.round(totalCost));
     }
 
     function calculateSpeedCost() {
-        console.log("speed");
     }
 
     function calculatePowerCost() {
-        console.log("power");
     }
 })();
