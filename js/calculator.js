@@ -1,5 +1,10 @@
 (function(){
 
+    //Globals
+    var RADIO_INDEX = 0;
+
+
+
     $(document).ready(function() {
             // add event listener to radio buttons
             $("input[name='unlock']").click(displaySelection);
@@ -24,25 +29,29 @@
     // Changes dropdown selection ball options according to which radio button 
     // is checked
     function displaySelection() {
+
+        var radioButtons = $("#radios input:radio[name='unlock']");
+        // record selected radio index in global for use elsewhere
+        RADIO_INDEX = radioButtons.index(radioButtons.filter(':checked'));
+        
         // show select box
         $ballOptions = $("#ballOptions");
-        //$ballOptions.css('visibility', 'visible');
-        var unlock = this.value;
+        // $ballOptions.css('visibility', 'visible');
         var selection;
-        switch (unlock) {
-            case "radBasic":
+        switch (RADIO_INDEX) {
+            case 0:
                 selection = ballBasic;
                 break;
-            case "rad175":
+            case 1:
                 selection = ball175;
                 break;
-            case "rad75k":
+            case 2:
                 selection = ball75k;
                 break;
-            case "rad175k":
+            case 3:
                 selection = ball175k;
                 break;
-            case "rad15M":
+            case 4:
                 selection = ball15m;
                 break;
             default:
@@ -75,11 +84,10 @@
             }
         }
         $("#ballName").text(ball.name + " Ball");
-        $("#curSpd").text("Current speed value: " + ball.speed);
-        $("#curPow").text("Current power value: " + ball.power);
     }
 
     function calculateLevelCost() {
+        
         console.log("level");
     }
 
