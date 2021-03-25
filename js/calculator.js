@@ -87,28 +87,35 @@
         }
         $("#ballName").text(ball.name + " Ball");
         CURRENT_BALL_INDEX = index;
+        console.log(CURRENT_BALL_INDEX);
     }
 
     // Calculates the total cost to upgrade from the starting to end level 
     // based on user inputs for levels and cost
-    // TODO: max level for pierce is 40
     function calculateLevelCost() {
-        var curLv = $("#curLvN").val();
+        var curLv = parseInt($("#curLvN").val());
         var curCost = parseInt($("#curCostN").val());
-        var toLv = $("#toLvN").val();
+        var toLv = parseInt($("#toLvN").val());
         var totalCost = 0;
 
-        var lvDiff = toLv - curLv;
+        // Force pierce ball to follow specific quantity restriction
+        if (CURRENT_BALL_INDEX == 6) {
+            if (toLv > 40) {
+                toLv = 40;
+                $("#toLvN").val(40);
+            }
+        }
 
+        // Calculate running cost of upgrading between selected levels
+        var lvDiff = toLv - curLv;
         if (lvDiff > 0) {
-            console.log("Hi");
             for (var i = 0; i < lvDiff; i++) {
-                totalCost += curCost;
+                totalCost += Math.round(curCost);
                 curCost *= 1.9;
             }
         }
 
-        $("#ballCost").text("Total Upgrade Cost: " + Math.round(totalCost));
+        $("#ballCost").text("Total Upgrade Cost: " + totalCost);
     }
 
     function calculateSpeedCost() {
