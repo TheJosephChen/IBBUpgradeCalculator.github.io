@@ -119,6 +119,14 @@
     }
 
     function calculateSpeedCost() {
+        var curLv = parseInt($("#curLvS").val());
+        var curCost = parseInt($("#curCostS").val());
+        var curVal = parseInt($("#curSpd").val());
+        var toLv = parseInt($("#toLvS").val());
+        var totalCost = 0;
+
+        
+
     }
 
     function calculatePowerCost() {
