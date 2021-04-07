@@ -87,14 +87,13 @@
         }
         $("#ballName").text(ball.name + " Ball");
         CURRENT_BALL_INDEX = index;
-        console.log(CURRENT_BALL_INDEX);
     }
 
     // Calculates the total cost to upgrade from the starting to end level 
     // based on user inputs for levels and cost
     function calculateLevelCost() {
         var curLv = parseInt($("#curLvN").val());
-        var curCost = parseInt($("#curCostN").val());
+        var curCost = parseFloat($("#curCostN").val());
         var toLv = parseInt($("#toLvN").val());
         var totalCost = 0;
 
@@ -120,11 +119,62 @@
 
     function calculateSpeedCost() {
         var curLv = parseInt($("#curLvS").val());
-        var curCost = parseInt($("#curCostS").val());
-        var curVal = parseInt($("#curSpd").val());
+        var curCost = parseFloat($("#curCostS").val());
+        var curVal = parseFloat($("#curSpd").val());
         var toLv = parseInt($("#toLvS").val());
         var totalCost = 0;
 
+        // Calculate running cost of upgrading speed and the new speed value
+        var lvDiff = toLv - curLv;
+        if (lvDiff > 0) {
+
+            // Get ball base speed
+            var baseSpeed = allBalls[CURRENT_BALL_INDEX].stats[RADIO_INDEX][0];
+            var baseIncrease;
+
+            // Check if selected ball is Demo
+            if (CURRENT_BALL_INDEX == 4) {
+                baseIncrease = 0.33;
+            } else {
+                baseIncrease = 0.62;
+            }
+
+            // Adjust base speed value for levels
+            for (var i = 0; i < curLv; i++) {
+                baseSpeed += (baseIncrease);
+                baseIncrease *= 0.99;
+            }
+
+            // Adjust base speed value for prestiges
+            if (curLv >= 80) {
+                baseSpeed *= 0.16;
+                baseIncrease *= 0.16;
+            } else if (curLv >= 40) {
+                baseSpeed *= 0.4;
+                baseIncrease *= 0.4;
+            }
+            
+            // Calculate total speed multiplier
+            var spdMulti = curVal / baseSpeed;
+
+
+            // TODO: Account for leveling through a ball prestige
+
+            // Calculate effect of leveling
+            for (var j = 0; j < lvDiff; j++) {
+                // Calculate new base speed
+                baseSpeed += (baseIncrease);
+                baseIncrease *= 0.99;
+
+                // Calculate new total cost
+                totalCost += Math.round(curCost);
+                curCost *= 1.9;
+            }
+
+            var finalSpeed = (spdMulti * baseSpeed).toFixed(2);
+            $("#newSpd").text("New speed value: " + finalSpeed);
+            $("#spdCost").text("Total Upgrade Cost: " + totalCost);
+        }
         
 
     }
