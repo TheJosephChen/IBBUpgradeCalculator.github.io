@@ -114,7 +114,7 @@
             }
         }
 
-        $("#ballCost").text("Total Upgrade Cost: " + totalCost);
+        $("#ballCost").text(totalCost);
     }
 
     function calculateSpeedCost() {
@@ -172,8 +172,8 @@
             }
 
             var finalSpeed = (spdMulti * baseSpeed).toFixed(2);
-            $("#newSpd").text("New speed value: " + finalSpeed);
-            $("#spdCost").text("Total Upgrade Cost: " + totalCost);
+            $("#newSpd").text(finalSpeed);
+            $("#spdCost").text(totalCost);
         }
         
 
@@ -224,8 +224,8 @@
             }
 
             var finalPower = (powMulti * basePower).toFixed(2);
-            $("#newPow").text("New power value: " + finalPower);
-            $("#powCost").text("Total Upgrade Cost: " + totalCost);
+            $("#newPow").text(finalPower);
+            $("#powCost").text(totalCost);
         }
         
     }

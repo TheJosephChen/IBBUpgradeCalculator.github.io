@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    
     <div id="container">
         <div id="selector" class="col-2">
             <h3>Step 1: Select Your Ball</h3>
@@ -137,7 +138,13 @@
                         <label for="toLvN">Upgrade to level:</label>
                         <input type="number" id="toLvN" name="level" min="0" max="50" value="0"><br><br>
 
-                        <p id="ballCost">Total Upgrade Cost:</p>
+                        <br><br><br>
+                        <table>
+                            <tr> 
+                                <td>Total Upgrade Cost:</td>
+                                <td id="ballCost"></td>
+                            </tr>
+                        </table>
                     </form>
                 </div>
                 <div id="ballSpd" class="col-4">
@@ -155,8 +162,16 @@
                         <label for="toLvS">Upgrade to level:</label>
                         <input type="number" id="toLvS" name="speed" value="0">
 
-                        <p id="newSpd">New speed value:</p>
-                        <p id="spdCost">Total Upgrade Cost:</p>
+                        <table>
+                            <tr> 
+                                <td>New speed value:</td>
+                                <td id="newSpd"></td>
+                            </tr>
+                            <tr> 
+                                <td>Total Upgrade Cost:</td>
+                                <td id="spdCost"></td>
+                            </tr>
+                        </table>
                     </form>
                 </div>
                 <div id="ballPow" class="col-4">
@@ -174,13 +189,23 @@
                         <label for="toLvP">Upgrade to level:</label>
                         <input type="number" id="toLvP" name="power" value="0">
 
-                        <p id="newPow">New power value:</p>
-                        <p id="powCost">Total Upgrade Cost:</p>
+                        <table>
+                            <tr> 
+                                <td>New power value:</td>
+                                <td id="newPow"></td>
+                            </tr>
+                            <tr> 
+                                <td>Total Upgrade Cost:</td>
+                                <td id="powCost"></td>
+                            </tr>
+                        </table>
                     </form>
                 </div>
             </div>
 
+            <p>DISCLAIMER: Calculated results may differ from actual value displayed in game by up to 1%.</p>
         </div>
+
         <div id="upgradeTable" class="col-12">
             <h3 class="col-12">Step 3: Review Your Upgrades</h3>
             <table>
