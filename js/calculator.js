@@ -180,5 +180,53 @@
     }
 
     function calculatePowerCost() {
+        var curLv = parseInt($("#curLvP").val());
+        var curCost = parseFloat($("#curCostP").val());
+        var curVal = parseFloat($("#curPow").val());
+        var toLv = parseInt($("#toLvP").val());
+        var totalCost = 0;
+
+        // Calculate running cost of upgrading power and the new power value
+        var lvDiff = toLv - curLv;
+        if (lvDiff > 0) {
+
+            // Get ball base power
+            var basePower = allBalls[CURRENT_BALL_INDEX].stats[RADIO_INDEX][1];
+            var baseIncrease;
+
+            // Check if selected ball is Poison or Cash
+            if (CURRENT_BALL_INDEX == 3 || CURRENT_BALL_INDEX == 7) {
+                baseIncrease = 0.4333;
+                increaseMulti = 1 / 1.02;
+            } else {
+                baseIncrease = basePower * 1.02;
+                increaseMulti = 1.02;
+            }
+
+            // Adjust base power value for levels
+            for (var i = 0; i < curLv; i++) {
+                basePower += (baseIncrease);
+                baseIncrease *= increaseMulti;
+            }
+            
+            // Calculate total power multiplier
+            var powMulti = curVal / basePower;
+
+            // Calculate effect of leveling
+            for (var j = 0; j < lvDiff; j++) {
+                // Calculate new base power
+                basePower += (baseIncrease);
+                baseIncrease *= increaseMulti;
+
+                // Calculate new total cost
+                totalCost += Math.round(curCost);
+                curCost *= 1.9;
+            }
+
+            var finalPower = (powMulti * basePower).toFixed(2);
+            $("#newPow").text("New power value: " + finalPower);
+            $("#powCost").text("Total Upgrade Cost: " + totalCost);
+        }
+        
     }
 })();
