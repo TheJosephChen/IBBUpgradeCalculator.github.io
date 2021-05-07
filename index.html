@@ -151,16 +151,16 @@
                     <h2>Ball Speed</h2>
                     <form>
                         <label for="curLvS">Current level:</label>
-                        <input type="number" id="curLvS" name="speed" value="0"><br>
+                        <input type="number" id="curLvS" name="speed" min="0" max="99" value="0"><br>
 
                         <label for="curSpd">Current speed value:</label>
-                        <input type="number" id="curSpd" name="speed" value="0"><br>
+                        <input type="text" id="curSpd" name="speed" value="0"><br>
 
                         <label for="curCostS">Current upgrade cost:</label>
                         <input type="text" id="curCostS" name="speed" value="0"><br>
 
                         <label for="toLvS">Upgrade to level:</label>
-                        <input type="number" id="toLvS" name="speed" value="0">
+                        <input type="number" id="toLvS" name="speed" min="0" max="99" value="0">
 
                         <table>
                             <tr> 
@@ -178,16 +178,16 @@
                     <h2>Ball Power</h2>
                     <form>
                         <label for="curLvP">Current level:</label>
-                        <input type="number" id="curLvP" name="power" value="0"><br>
+                        <input type="number" id="curLvP" name="power" min="0" max="150" value="0"><br>
 
                         <label for="curPow">Current power value:</label>
-                        <input type="number" id="curPow" name="power" value="0"><br>
+                        <input type="text" id="curPow" name="power" value="0"><br>
 
                         <label for="curCostP">Current upgrade cost:</label>
                         <input type="text" id="curCostP" name="power" value="0"><br>
 
                         <label for="toLvP">Upgrade to level:</label>
-                        <input type="number" id="toLvP" name="power" value="0">
+                        <input type="number" id="toLvP" name="power" min="0" max="150" value="0">
 
                         <table>
                             <tr> 
@@ -224,6 +224,7 @@
             </table>
         </div>
     </div>
+    <script src="js/numbers.js"></script>
     <script src="js/ball.js"></script>
     <script src="js/calculator.js"></script>
 </body>
