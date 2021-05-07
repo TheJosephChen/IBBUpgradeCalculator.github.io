@@ -1,27 +1,22 @@
-let numbers = new Map();
-numbers.set("k", 10 ** 3);
-numbers.set("m", 10 ** 6);
-numbers.set("b", 10 ** 9);
-numbers.set("t", 10 ** 12);
-numbers.set("q", 10 ** 15);
-numbers.set("Q", 10 ** 18);
-numbers.set("s", 10 ** 21);
-numbers.set("S", 10 ** 24);
-numbers.set("o", 10 ** 27);
-numbers.set("N", 10 ** 30);
-numbers.set("D", 10 ** 33);
-numbers.set("aa", 10 ** 36);
-numbers.set("ab", 10 ** 39);
-numbers.set("ac", 10 ** 42);
-numbers.set("ad", 10 ** 45);
-numbers.set("ae", 10 ** 48);
-numbers.set("af", 10 ** 51);
-numbers.set("ag", 10 ** 54);
-numbers.set("ah", 10 ** 57);
-numbers.set("ai", 10 ** 60);
-numbers.set("aj", 10 ** 63);
-numbers.set("ak", 10 ** 66);
-numbers.set("al", 10 ** 69);
-numbers.set("am", 10 ** 72);
-numbers.set("an", 10 ** 75);
-numbers.set("ao", 10 ** 78);
+let letters = ["", "k", "m", "b", "t", "q", "Q", "s", "S", "o", "N", "D", "aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj", "ak", "al", "am", "an", "ao"];
+
+function convertNumberLetter(number, letter) {
+    var finalNum;
+    var finalLet;
+
+    // current max supported value
+    if (letter == "ao") {
+        finalNum = number;
+        finalLet = letter;
+    } else {
+        var index = letters.indexOf(letter);
+        while (number > 1000) {
+            index++;
+            number /= 1000;
+        }
+        finalNum = number.toFixed(2);
+        finalLet = letters[index];
+    }
+    return  finalNum.toString() + finalLet;
+
+}
