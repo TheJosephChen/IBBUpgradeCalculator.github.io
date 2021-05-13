@@ -93,9 +93,13 @@
     // based on user inputs for levels and cost
     function calculateLevelCost() {
         var curLv = parseInt($("#curLvN").val());
-        var curCost = parseFloat($("#curCostN").val());
+        var rawCost = $("#curCostN").val();
         var toLv = parseInt($("#toLvN").val());
         var totalCost = 0;
+
+
+        var costReg = rawCost.match(/[a-zA-Z]+|[0-9]+(?:\.[0-9]+|)/g);
+        var curCost = parseFloat(costReg[0]);
 
         // Force pierce ball to follow specific quantity restriction
         if (CURRENT_BALL_INDEX == 6) {
@@ -114,15 +118,26 @@
             }
         }
 
+
+        totalCost = convertNumberLetter(totalCost, costReg[1]);
+
         $("#ballCost").text(totalCost);
     }
 
     function calculateSpeedCost() {
         var curLv = parseInt($("#curLvS").val());
-        var curCost = parseFloat($("#curCostS").val());
-        var curVal = parseFloat($("#curSpd").val());
+        var rawCost = $("#curCostS").val();
+        var rawVal = $("#curSpd").val();
         var toLv = parseInt($("#toLvS").val());
         var totalCost = 0;
+
+
+
+        var costReg = rawCost.match(/[a-zA-Z]+|[0-9]+(?:\.[0-9]+|)/g);
+        var valReg = rawVal.match(/[a-zA-Z]+|[0-9]+(?:\.[0-9]+|)/g);
+        var curCost = parseFloat(costReg[0]);
+        var curVal = parseFloat(valReg[0]);
+
 
         // Calculate running cost of upgrading speed and the new speed value
         var lvDiff = toLv - curLv;
@@ -172,6 +187,9 @@
             }
 
             var finalSpeed = (spdMulti * baseSpeed).toFixed(2);
+
+            finalSpeed = convertNumberLetter(finalSpeed, valReg[1]);
+            totalCost = convertNumberLetter(totalCost, costReg[1]);
             $("#newSpd").text(finalSpeed);
             $("#spdCost").text(totalCost);
         }
