@@ -5,16 +5,22 @@ function convertNumberLetter(number, letter) {
     var finalLet;
 
     // current max supported value
+    if (letter == undefined || letter == null) {
+        return number.toString()
+    }
+
     if (letter == "ao") {
+        // make no change
         finalNum = number;
         finalLet = letter;
     } else {
+        // adjust to appropriate letter
         var index = letters.indexOf(letter);
         while (number > 1000) {
             index++;
             number /= 1000;
         }
-        finalNum = number.toFixed(2);
+        finalNum = parseFloat(number).toFixed(2);
         finalLet = letters[index];
     }
     return  finalNum.toString() + finalLet;

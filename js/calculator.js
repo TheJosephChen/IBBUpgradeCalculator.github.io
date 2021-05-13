@@ -181,10 +181,17 @@
 
     function calculatePowerCost() {
         var curLv = parseInt($("#curLvP").val());
-        var curCost = parseFloat($("#curCostP").val());
-        var curVal = parseFloat($("#curPow").val());
+        var rawCost = $("#curCostP").val();
+        var rawVal = $("#curPow").val();
         var toLv = parseInt($("#toLvP").val());
         var totalCost = 0;
+
+        var costReg = rawCost.match(/[a-zA-Z]+|[0-9]+(?:\.[0-9]+|)/g);
+        var valReg = rawVal.match(/[a-zA-Z]+|[0-9]+(?:\.[0-9]+|)/g);
+        
+        var curCost = parseFloat(costReg[0]);
+        var curVal = parseFloat(valReg[0]);
+
 
         // Calculate running cost of upgrading power and the new power value
         var lvDiff = toLv - curLv;
@@ -224,6 +231,10 @@
             }
 
             var finalPower = (powMulti * basePower).toFixed(2);
+            finalPower = convertNumberLetter(finalPower, valReg[1]);
+            totalCost = convertNumberLetter(totalCost, costReg[1]);
+
+
             $("#newPow").text(finalPower);
             $("#powCost").text(totalCost);
         }
