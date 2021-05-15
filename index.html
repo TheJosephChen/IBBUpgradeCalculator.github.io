@@ -151,7 +151,7 @@
                     <h2>Ball Speed</h2>
                     <form id="spdForm">
                         <label for="curLvS">Current level:</label>
-                        <input type="number" id="curLvS" name="speed" min="0" max="99" value="0"><br>
+                        <select id="curLvS" name="speed" ></select><br>
 
                         <label for="curSpd">Current speed value:</label>
                         <input type="text" id="curSpd" name="speed" value="0"><br>
@@ -160,7 +160,7 @@
                         <input type="text" id="curCostS" name="speed" value="0"><br>
 
                         <label for="toLvS">Upgrade to level:</label>
-                        <input type="number" id="toLvS" name="speed" min="0" max="99" value="0">
+                        <select id="toLvS" name="speed"></select><br>
 
                         <table>
                             <tr> 
@@ -224,8 +224,9 @@
             </table>
         </div>
     </div>
-    <script src="js/numbers.js"></script>
     <script src="data/ball.js"></script>
+    <script src="data/speed.js"></script>
+    <script src="js/numbers.js"></script>
     <script src="js/calculator.js"></script>
 </body>
 </html>

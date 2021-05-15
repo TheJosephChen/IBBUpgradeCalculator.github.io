@@ -6,8 +6,9 @@
 
 
     $(document).ready(function() {
-            // disable calculator input form
+            // disable calculator forms
             $("#upgrades input").prop("disabled", true);
+            $("#upgrades select").prop("disabled", true);
 
             // add event listener to radio buttons
             $("input[name='unlock']").click(displaySelection);
@@ -93,9 +94,12 @@
         $("#ballName").text(ball.name + " Ball");
         CURRENT_BALL_INDEX = index;
 
+        setSpeedDropdown();
+
         // enable calculator
-        $("#upgrades input").prop("disabled", false);
+        $("#upgrades input, select").prop("disabled", false);
         console.log("hi");
+
     }
 
     // resets all form input fields of the calculator
@@ -103,6 +107,13 @@
         document.getElementById("numForm").reset();
         document.getElementById("spdForm").reset();
         document.getElementById("powForm").reset();
+    }
+
+    function setSpeedDropdown() {
+        $.each(speedLv, function(i, p) {
+            $("#curLvS").append($('<option></option>').val(p).html(p));
+            $("#toLvS").append($('<option></option>').val(p).html(p));
+        });
     }
 
     // Calculates the total cost to upgrade from the starting to end level 
