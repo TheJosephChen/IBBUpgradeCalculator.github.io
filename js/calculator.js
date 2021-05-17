@@ -309,7 +309,7 @@
                 baseIncrease *= increaseMulti;
 
                 // Calculate new total cost
-                totalCost += Math.round(curCost);
+                totalCost += curCost;
                 curCost *= 1.9;
             }
 
