@@ -160,6 +160,7 @@
         var rawVal = $("#curSpd").val();
         var rawToLv = $("#toLvS").val();
         var totalCost = 0;
+        var finalSpeed = 0;
 
         var costReg = rawCost.match(/[a-zA-Z]+|[0-9]+(?:\.[0-9]+|)/g);
         var valReg = rawVal.match(/[a-zA-Z]+|[0-9]+(?:\.[0-9]+|)/g);
@@ -201,7 +202,8 @@
         // check for natural prestige through leveling
         if (!toP2 && curLv <= 79 && toLv >= 80) {
             PERF_PRES_2 = true;
-        } else if (!toP1 && curLv <= 39 && toLv >= 40) {
+        }
+        if (!toP1 && curLv <= 39 && toLv >= 40) {
             PERF_PRES_1 = true;
         }
 
@@ -251,23 +253,28 @@
                 baseSpeed *= 0.4;
             }
 
-            var finalSpeed = (spdMulti * baseSpeed).toFixed(2);
-
-            finalSpeed = convertNumberLetter(finalSpeed, valReg[1]);
-            totalCost = convertNumberLetter(totalCost, costReg[1]);
-            $("#newSpd").text(finalSpeed);
-            $("#spdCost").text(totalCost);
+            calculatePowerCost();
+            finalSpeed = (spdMulti * baseSpeed).toFixed(2);
+        } else {
+            finalSpeed = curVal;
         }
+
+        finalSpeed = convertNumberLetter(finalSpeed, valReg[1]);
+        totalCost = convertNumberLetter(totalCost, costReg[1]);
+        $("#newSpd").text(finalSpeed);
+        $("#spdCost").text(totalCost);
         
 
     }
 
     function calculatePowerCost() {
+        console.log("calculating power");
         var curLv = parseInt($("#curLvP").val());
         var rawCost = $("#curCostP").val();
         var rawVal = $("#curPow").val();
         var toLv = parseInt($("#toLvP").val());
         var totalCost = 0;
+        var finalPower = 0;
 
         var costReg = rawCost.match(/[a-zA-Z]+|[0-9]+(?:\.[0-9]+|)/g);
         var valReg = rawVal.match(/[a-zA-Z]+|[0-9]+(?:\.[0-9]+|)/g);
@@ -313,14 +320,25 @@
                 curCost *= 1.9;
             }
 
-            var finalPower = (powMulti * basePower).toFixed(2);
-            finalPower = convertNumberLetter(finalPower, valReg[1]);
-            totalCost = convertNumberLetter(totalCost, costReg[1]);
-
-
-            $("#newPow").text(finalPower);
-            $("#powCost").text(totalCost);
+            finalPower = (powMulti * basePower).toFixed(2);
+        } else {
+            finalPower = curVal;
         }
-        
+
+        // apply purchased prestige boosts
+        if (PERF_PRES_1) { 
+            finalPower *= 5; 
+            console.log("pres 1");
+        }
+        if (PERF_PRES_2) { 
+            finalPower *= 5; 
+            console.log("pres 2");
+        }
+
+        finalPower = convertNumberLetter(finalPower, valReg[1]);
+        totalCost = convertNumberLetter(totalCost, costReg[1]);
+
+        $("#newPow").text(finalPower);
+        $("#powCost").text(totalCost);      
     }
 })();
