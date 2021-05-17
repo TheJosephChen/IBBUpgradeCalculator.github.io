@@ -5,12 +5,14 @@
     var CURRENT_BALL_INDEX;
     var PERF_PRES_1 = false;
     var PERF_PRES_2 = false;
+    var PURCHASES = [null, null, null, null, null, null, null, null, null];
 
 
     $(document).ready(function() {
             // disable calculator forms
             $("#upgrades input").prop("disabled", true);
             $("#upgrades select").prop("disabled", true);
+            $("#upgrades button").prop("disabled", true);
 
             // add event listener to radio buttons
             $("input[name='unlock']").click(displaySelection);
@@ -27,8 +29,10 @@
             // add event listener to calculator inputs
             $("input[name='level']").change(calculateLevelCost);
             $("input[name='speed']").change(calculateSpeedCost);
-            $("select").change(calculateSpeedCost);
+            $("select[name='speed']").change(calculateSpeedCost);
             $("input[name='power']").change(calculatePowerCost);
+
+            $("#purchase").click(recordPurchase)
         }
     );
 
@@ -100,7 +104,7 @@
         setSpeedDropdown();
 
         // enable calculator
-        $("#upgrades input, select").prop("disabled", false);
+        $("#upgrades input, select, button").prop("disabled", false);
     }
 
     // resets all form input fields of the calculator
@@ -108,6 +112,9 @@
         document.getElementById("numForm").reset();
         document.getElementById("spdForm").reset();
         document.getElementById("powForm").reset();
+        calculateLevelCost();
+        calculateSpeedCost();
+        calculatePowerCost();
         PERF_PRES_1 = false;
         PERF_PRES_2 = false;
     }
@@ -268,7 +275,6 @@
     }
 
     function calculatePowerCost() {
-        console.log("calculating power");
         var curLv = parseInt($("#curLvP").val());
         var rawCost = $("#curCostP").val();
         var rawVal = $("#curPow").val();
@@ -340,5 +346,19 @@
 
         $("#newPow").text(finalPower);
         $("#powCost").text(totalCost);      
+    }
+
+    function recordPurchase() {
+        var unlock = unlocks[RADIO_INDEX];
+        var ball = allBallNames[CURRENT_BALL_INDEX];
+        var newNum = parseInt($("#toLvN").val());
+        var newSpd = parseInt($("#toLvS").val());
+        var newPow = parseInt($("#toLvP").val());
+        var numCost = $("#ballCost").text();
+        var spdCost = $("#spdCost").text();
+        var powCost = $("#powCost").text();
+        var row = [unlock, ball, newNum, newSpd, newPow, "", numCost, spdCost, powCost];
+        
+        PURCHASES[RADIO_INDEX] = row;
     }
 })();

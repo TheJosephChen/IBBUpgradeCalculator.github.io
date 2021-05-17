@@ -36,3 +36,4 @@ var ball400b = ball15m.concat([sword]);
 
 var allBalls = [basic, sniper, splash, poison, demo, scatter, pierce, cash, sword];
 var allBallNames = ["Basic", "Sniper", "Splash", "Poison", "Demo", "Scatter", "Pierce", "Cash", "Sword"];
+var unlocks = ["Base", "$175", "$7.5k", "175k", "15m", "400b", "10q", "10s", "100O"];

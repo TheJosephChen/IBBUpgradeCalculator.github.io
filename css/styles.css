@@ -58,3 +58,28 @@ table {
 th[class*="col-"] {
     float:none;
 }
+
+#purchase {
+    padding: 8px 20px;
+    margin-bottom: 10px;
+    background: black;
+    border-radius: 5%;
+}
+
+#purchase:disabled {
+    color: rgb(121, 121, 121);
+    border: 0.15rem solid rgb(121, 121, 121);
+}
+#purchase:enabled {
+    color: #fff;
+    border: 0.15rem solid #fff;
+    box-shadow: 0 0 0.5rem rgb(0, 225, 255), 
+                inset 0 0 0.5rem rgb(0, 225, 255);
+    transition-duration: 0.4s;
+}
+
+#purchase:enabled:hover {
+    box-shadow: 0 0 0.5rem rgb(255, 0, 225), 
+                inset 0 0 0.5rem rgb(255, 0, 225);
+}
+
