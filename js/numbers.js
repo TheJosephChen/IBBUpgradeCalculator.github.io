@@ -4,8 +4,12 @@ function convertNumberLetter(number, letter) {
     var finalNum;
     var finalLet;
 
+    if (letter == undefined) {
+        letter = "";
+    }
+    
     // current max supported value
-    if (letter == undefined || letter == null) {
+    if (letter == null) {
         return number.toString()
     }
 

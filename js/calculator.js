@@ -3,6 +3,8 @@
     //Globals
     var RADIO_INDEX = 0;
     var CURRENT_BALL_INDEX;
+    var PERF_PRES_1 = false;
+    var PERF_PRES_2 = false;
 
 
     $(document).ready(function() {
@@ -25,6 +27,7 @@
             // add event listener to calculator inputs
             $("input[name='level']").change(calculateLevelCost);
             $("input[name='speed']").change(calculateSpeedCost);
+            $("select").change(calculateSpeedCost);
             $("input[name='power']").change(calculatePowerCost);
         }
     );
@@ -98,8 +101,6 @@
 
         // enable calculator
         $("#upgrades input, select").prop("disabled", false);
-        console.log("hi");
-
     }
 
     // resets all form input fields of the calculator
@@ -107,6 +108,8 @@
         document.getElementById("numForm").reset();
         document.getElementById("spdForm").reset();
         document.getElementById("powForm").reset();
+        PERF_PRES_1 = false;
+        PERF_PRES_2 = false;
     }
 
     function setSpeedDropdown() {
@@ -152,23 +155,59 @@
     }
 
     function calculateSpeedCost() {
-        var curLv = parseInt($("#curLvS").val());
+        var rawLv = $("#curLvS").val();
         var rawCost = $("#curCostS").val();
         var rawVal = $("#curSpd").val();
-        var toLv = parseInt($("#toLvS").val());
+        var rawToLv = $("#toLvS").val();
         var totalCost = 0;
-
-
 
         var costReg = rawCost.match(/[a-zA-Z]+|[0-9]+(?:\.[0-9]+|)/g);
         var valReg = rawVal.match(/[a-zA-Z]+|[0-9]+(?:\.[0-9]+|)/g);
         var curCost = parseFloat(costReg[0]);
         var curVal = parseFloat(valReg[0]);
 
+        // prestige conditions
+        var curP1 = rawLv == "first prestige";
+        var curP2 = rawLv == "second prestige";
+        var toP1 = rawToLv == "first prestige";
+        var toP2 = rawToLv == "second prestige";
+
+        // if starting on a prestige step, adjust levels and costs, perform perstige
+        if (curP1) {
+            curLv = 40;
+            totalCost = curCost;
+            curCost = curCost / 9.49 * 1.9;
+            PERF_PRES_1 = true;
+        } else if (curP2) {
+            curLv = 80;
+            totalCost = curCost;
+            curCost = curCost / 9.49 * 1.9;
+            PERF_PRES_2 = true;
+        } else {
+            var curLv = parseInt(rawLv);
+            PERF_PRES_1 = false;
+            PERF_PRES_2 = false;
+        }
+        
+        // if ending on a prestige step, do not perform prestige
+        if (toP1) {
+            toLv = 40;
+        } else if (toP2) {
+            toLv = 80;
+        } else {
+            var toLv = parseInt(rawToLv);
+        }
+
+        // check for natural prestige through leveling
+        if (!toP2 && curLv <= 79 && toLv >= 80) {
+            PERF_PRES_2 = true;
+        } else if (!toP1 && curLv <= 39 && toLv >= 40) {
+            PERF_PRES_1 = true;
+        }
 
         // Calculate running cost of upgrading speed and the new speed value
         var lvDiff = toLv - curLv;
-        if (lvDiff > 0) {
+        if (lvDiff >= 0) {
 
             // Get ball base speed
             var baseSpeed = allBalls[CURRENT_BALL_INDEX].stats[RADIO_INDEX][0];
@@ -186,21 +225,9 @@
                 baseSpeed += (baseIncrease);
                 baseIncrease *= 0.99;
             }
-
-            // Adjust base speed value for prestiges
-            if (curLv >= 80) {
-                baseSpeed *= 0.16;
-                baseIncrease *= 0.16;
-            } else if (curLv >= 40) {
-                baseSpeed *= 0.4;
-                baseIncrease *= 0.4;
-            }
             
             // Calculate total speed multiplier
             var spdMulti = curVal / baseSpeed;
-
-
-            // TODO: Account for leveling through a ball prestige
 
             // Calculate effect of leveling
             for (var j = 0; j < lvDiff; j++) {
@@ -209,8 +236,19 @@
                 baseIncrease *= 0.99;
 
                 // Calculate new total cost
-                totalCost += Math.round(curCost);
+                if ((curLv + j == 39 && PERF_PRES_1) || (curLv + j == 79 && PERF_PRES_2)) {
+                    totalCost += curCost * 9.49;
+                } 
+                totalCost += curCost;
                 curCost *= 1.9;
+            }
+
+
+            // Adjust base speed value for any prestiges
+            if (toLv >= 80 && !toP2) {
+                baseSpeed *= 0.16;
+            } else if (toLv >= 40 && !toP1) {
+                baseSpeed *= 0.4;
             }
 
             var finalSpeed = (spdMulti * baseSpeed).toFixed(2);
