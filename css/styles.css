@@ -47,7 +47,7 @@ input[type="number"], input[type="text"], select{
     margin-bottom: 30px;
 }
 
-table, th, td {
+table, th, td, tr{
     border: 1px solid #fff;
     border-collapse: collapse;
 }
@@ -55,8 +55,9 @@ table, th, td {
 table {
     margin-bottom: 20px;
 }
-th[class*="col-"] {
+th[class*="col-"], td[class*="col-"] {
     float:none;
+    text-align: center;
 }
 
 #purchase {

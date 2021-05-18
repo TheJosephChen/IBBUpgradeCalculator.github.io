@@ -357,8 +357,32 @@
         var numCost = $("#ballCost").text();
         var spdCost = $("#spdCost").text();
         var powCost = $("#powCost").text();
-        var row = [unlock, ball, newNum, newSpd, newPow, "", numCost, spdCost, powCost];
+
+
+        var row = [unlock, ball, newNum, newSpd, newPow, numCost, spdCost, powCost, "", ""];
         
         PURCHASES[RADIO_INDEX] = row;
+        drawTable();
+    }
+
+
+    function drawTable() {
+        clearTable();
+        var table = $("#upgradeTable > table");
+        for (var i = 0; i < 9; i++) {
+            var row = PURCHASES[i];
+            if (row != null) {
+                var tableRow = '<tr>';
+                row.forEach(element => tableRow += '<td class="col-1">' + element + '</td>');
+                tableRow += '</tr>';
+                console.log(tableRow);
+                table.append(tableRow);
+            }
+        }
+    }
+
+    function clearTable() {
+        var table = $("#upgradeTable tbody");
+        table.empty();
     }
 })();
