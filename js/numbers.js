@@ -28,5 +28,18 @@ function convertNumberLetter(number, letter) {
         finalLet = letters[index];
     }
     return  finalNum.toString() + finalLet;
+}
 
+function reverseNumberLetter(number, letter) {
+    
+    if (letter == undefined || letter == "" || letter == null) {
+        return number;
+    } else {
+        var index = letters.indexOf(letter);
+        while (index > 0) {
+            index--;
+            number *= 1000;
+        }
+        return number;
+    }
 }

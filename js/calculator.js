@@ -358,11 +358,22 @@
         var spdCost = $("#spdCost").text();
         var powCost = $("#powCost").text();
 
+        var costArr = [numCost, spdCost, powCost];
+        var totalCost = sumCosts(costArr);
 
-        var row = [unlock, ball, newNum, newSpd, newPow, numCost, spdCost, powCost, "", ""];
+        var row = [unlock, ball, newNum, newSpd, newPow, numCost, spdCost, powCost, totalCost];
         
         PURCHASES[RADIO_INDEX] = row;
         drawTable();
+    }
+
+    function sumCosts(costArr) {
+        var sum = 0;
+        for (var i = 0; i < costArr.length; i++) {
+            var reg = costArr[i].match(/[a-zA-Z]+|[0-9]+(?:\.[0-9]+|)/g);
+            sum += reverseNumberLetter(parseFloat(reg[0]), reg[1]); 
+        }
+        return convertNumberLetter(sum, "");
     }
 
 
@@ -374,8 +385,8 @@
             if (row != null) {
                 var tableRow = '<tr>';
                 row.forEach(element => tableRow += '<td class="col-1">' + element + '</td>');
+                tableRow += '<td><button id="remove">Remove</button></td>';
                 tableRow += '</tr>';
-                console.log(tableRow);
                 table.append(tableRow);
             }
         }
