@@ -289,7 +289,13 @@
         var curCost = parseFloat(costReg[0]);
         var curVal = parseFloat(valReg[0]);
 
-
+        // constrain poison to max power level
+        if (CURRENT_BALL_INDEX == 3) {
+            if (toLv > 119) {
+                toLv = 119;
+                $("#toLvP").val(119);
+            }
+        }
         // Calculate running cost of upgrading power and the new power value
         var lvDiff = toLv - curLv;
         if (lvDiff > 0) {
@@ -387,7 +393,6 @@
             if (row != null) {
                 
                 var tableRow = '<tr>';
-                //row.forEach(element => tableRow += '<td class="col-1">' + element + '</td>');
                 for (var j = 0; j < row.length; j++) {
                     tableRow += '<td class="col-1">' + row[j] + '</td>';
                 }
