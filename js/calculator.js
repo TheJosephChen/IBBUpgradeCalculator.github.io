@@ -6,6 +6,7 @@
     var PERF_PRES_1 = false;
     var PERF_PRES_2 = false;
     var PURCHASES = [null, null, null, null, null, null, null, null, null];
+    var PURCHASE_COSTS = ["0", "0", "0", "0", "0", "0", "0", "0", "0"];
 
 
     $(document).ready(function() {
@@ -364,6 +365,7 @@
         var row = [unlock, ball, newNum, newSpd, newPow, numCost, spdCost, powCost, totalCost];
         
         PURCHASES[RADIO_INDEX] = row;
+        PURCHASE_COSTS[RADIO_INDEX] = totalCost;
         drawTable();
     }
 
@@ -390,6 +392,9 @@
                 table.append(tableRow);
             }
         }
+        var totalCost = sumCosts(PURCHASE_COSTS);
+        var costRow = '<tr><td><b>Total</b></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>' + totalCost + '</td>';
+        table.append(costRow);
     }
 
     function clearTable() {
