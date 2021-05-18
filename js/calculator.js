@@ -33,7 +33,7 @@
             $("select[name='speed']").change(calculateSpeedCost);
             $("input[name='power']").change(calculatePowerCost);
 
-            $("#purchase").click(recordPurchase)
+            $("#purchase").click(recordPurchase);
         }
     );
 
@@ -381,15 +381,19 @@
 
     function drawTable() {
         clearTable();
-        var table = $("#upgradeTable > table");
+        var table = $("#upgradeTable");
         for (var i = 0; i < 9; i++) {
             var row = PURCHASES[i];
             if (row != null) {
+                
                 var tableRow = '<tr>';
-                row.forEach(element => tableRow += '<td class="col-1">' + element + '</td>');
-                tableRow += '<td><button id="remove">Remove</button></td>';
-                tableRow += '</tr>';
+                //row.forEach(element => tableRow += '<td class="col-1">' + element + '</td>');
+                for (var j = 0; j < row.length; j++) {
+                    tableRow += '<td class="col-1">' + row[j] + '</td>';
+                }
+                tableRow += '<td><button id="remove' + i + '">Remove</button></td></tr>';
                 table.append(tableRow);
+                $("#remove"+i).click(removeRow);
             }
         }
         var totalCost = sumCosts(PURCHASE_COSTS);
@@ -398,7 +402,13 @@
     }
 
     function clearTable() {
-        var table = $("#upgradeTable tbody");
-        table.empty();
+        $("#upgradeTable tbody tr").remove();
+    }
+
+    function removeRow() {
+        var index = this.id.substring(this.id.length - 1);
+        PURCHASES[index] = null;
+        PURCHASE_COSTS[index] = "0";
+        drawTable();
     }
 })();
