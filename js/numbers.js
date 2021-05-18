@@ -1,4 +1,4 @@
-let letters = ["", "k", "m", "b", "t", "q", "Q", "s", "S", "o", "N", "D", "aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj", "ak", "al", "am", "an", "ao"];
+let letters = ["", "K", "M", "B", "T", "q", "Q", "s", "S", "o", "N", "D", "aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj", "ak", "al", "am", "an", "ao"];
 
 function convertNumberLetter(number, letter) {
     var finalNum;
@@ -20,6 +20,10 @@ function convertNumberLetter(number, letter) {
     } else {
         // adjust to appropriate letter
         var index = letters.indexOf(letter);
+        if (index == -1) {
+            index = 0;
+        }
+
         while (number > 1000) {
             index++;
             number /= 1000;
