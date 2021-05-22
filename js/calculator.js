@@ -151,7 +151,7 @@
         var lvDiff = toLv - curLv;
         if (lvDiff > 0) {
             for (var i = 0; i < lvDiff; i++) {
-                totalCost += Math.round(curCost);
+                totalCost += curCost;
                 curCost *= 1.9;
             }
         }
@@ -255,9 +255,9 @@
 
 
             // Adjust base speed value for any prestiges
-            if (toLv >= 80 && !toP2) {
+            if (PERF_PRES_1 && PERF_PRES_2) {
                 baseSpeed *= 0.16;
-            } else if (toLv >= 40 && !toP1) {
+            } else if (PERF_PRES_1 || PERF_PRES_2) {
                 baseSpeed *= 0.4;
             }
 
