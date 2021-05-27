@@ -1,4 +1,4 @@
-let letters = ["", "K", "M", "B", "T", "q", "Q", "s", "S", "o", "N", "D", "aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj", "ak", "al", "am", "an", "ao"];
+let letters = ["", "K", "M", "B", "T", "q", "Q", "s", "S", "O", "N", "D", "aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj", "ak", "al", "am", "an", "ao"];
 
 function convertNumberLetter(number, letter) {
     var finalNum;
