@@ -5,8 +5,8 @@
     var CURRENT_BALL_INDEX;
     var PERF_PRES_1 = false;
     var PERF_PRES_2 = false;
-    var PURCHASES = [null, null, null, null, null, null, null, null, null];
-    var PURCHASE_COSTS = ["0", "0", "0", "0", "0", "0", "0", "0", "0"];
+    var PURCHASES = [null, null, null, null, null, null, null, null, null, null];
+    var PURCHASE_COSTS = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0"];
 
 
     $(document).ready(function() {
@@ -388,7 +388,7 @@
     function drawTable() {
         clearTable();
         var table = $("#upgradeTable");
-        for (var i = 0; i < 9; i++) {
+        for (var i = 0; i < 10; i++) {
             var row = PURCHASES[i];
             if (row != null) {
                 
