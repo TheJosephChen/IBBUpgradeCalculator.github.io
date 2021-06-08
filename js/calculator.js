@@ -101,6 +101,7 @@
         }
         $("#ballName").text(ball.name + " Ball");
         CURRENT_BALL_INDEX = index;
+        drawBall();
 
         setSpeedDropdown();
 
@@ -415,5 +416,41 @@
         PURCHASES[index] = null;
         PURCHASE_COSTS[index] = "0";
         drawTable();
+    }
+
+    function drawBall() {
+        $ballImg = $("#ballImage");
+
+        switch(CURRENT_BALL_INDEX) {
+            case 1:
+                $ballImg.css({"background": "rgb(253, 168, 17)", "box-shadow": "0 0 0px 10px rgb(253, 168, 17)"});
+                break;
+            case 2:
+                $ballImg.css({"background": "rgb(253, 61, 245)", "box-shadow": "0 0 0px 10px rgb(253, 61, 245)"});
+                break;
+            case 3:
+                $ballImg.css({"background": "rgb(105, 250, 83)", "box-shadow": "0 0 0px 10px rgb(105, 250, 83)"});
+                break;
+            case 4:
+                $ballImg.css({"background": "rgb(253, 19, 10)", "box-shadow": "0 0 0px 10px rgb(253, 19, 10)"});
+                break;
+            case 5:
+                $ballImg.css({"background": "rgb(22, 219, 253)", "box-shadow": "0 0 0px 10px rgb(22, 219, 253)"});
+                break;
+            case 6:
+                $ballImg.css({"background": "rgb(147, 147, 147)", "box-shadow": "0 0 0px 10px rgb(147, 147, 147)"});
+                break;
+            case 7:
+                $ballImg.css({"background": "rgb(252, 218, 6)", "box-shadow": "0 0 0px 10px rgb(252, 218, 6)"});
+                break;
+            case 8:
+                $ballImg.css({"background": "rgb(255, 255, 255)", "box-shadow": "0 0 0px 10px rgb(11, 249, 251)"});
+                break;
+            case 9:
+                $ballImg.css({"background": "rgb(238, 78, 26)", "box-shadow": "0 0 0px 10px rgb(238, 78, 26)"});
+                break;
+            default:
+                $ballImg.css({"background": "rgb(255, 255, 255)", "box-shadow": "0 0 0px 10px rgb(255, 255, 255)"});
+        }
     }
 })();
