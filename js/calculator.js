@@ -5,8 +5,11 @@
     var CURRENT_BALL_INDEX;
     var PERF_PRES_1 = false;
     var PERF_PRES_2 = false;
-    var PURCHASES = [null, null, null, null, null, null, null, null, null, null];
-    var PURCHASE_COSTS = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0"];
+
+    // array sizes equal to number of slots
+    const SLOTS = 11;
+    var PURCHASES = [null, null, null, null, null, null, null, null, null, null, null];
+    var PURCHASE_COSTS = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"];
 
 
     $(document).ready(function() {
@@ -389,7 +392,7 @@
     function drawTable() {
         clearTable();
         var table = $("#upgradeTable");
-        for (var i = 0; i < 10; i++) {
+        for (var i = 0; i < SLOTS; i++) {
             var row = PURCHASES[i];
             if (row != null) {
                 
@@ -422,34 +425,37 @@
         $ballImg = $("#ballImage");
 
         switch(CURRENT_BALL_INDEX) {
-            case 1:
+            case 1: //sniper
                 $ballImg.css({"background": "rgb(253, 168, 17)", "box-shadow": "0 0 0px 10px rgb(253, 168, 17)"});
                 break;
-            case 2:
+            case 2: //splash
                 $ballImg.css({"background": "rgb(253, 61, 245)", "box-shadow": "0 0 0px 10px rgb(253, 61, 245)"});
                 break;
-            case 3:
+            case 3: //poison
                 $ballImg.css({"background": "rgb(105, 250, 83)", "box-shadow": "0 0 0px 10px rgb(105, 250, 83)"});
                 break;
-            case 4:
+            case 4: //demo
                 $ballImg.css({"background": "rgb(253, 19, 10)", "box-shadow": "0 0 0px 10px rgb(253, 19, 10)"});
                 break;
-            case 5:
+            case 5: //scatter
                 $ballImg.css({"background": "rgb(22, 219, 253)", "box-shadow": "0 0 0px 10px rgb(22, 219, 253)"});
                 break;
-            case 6:
+            case 6: //pierce
                 $ballImg.css({"background": "rgb(147, 147, 147)", "box-shadow": "0 0 0px 10px rgb(147, 147, 147)"});
                 break;
-            case 7:
+            case 7: //cash
                 $ballImg.css({"background": "rgb(252, 218, 6)", "box-shadow": "0 0 0px 10px rgb(252, 218, 6)"});
                 break;
-            case 8:
+            case 8: //sword
                 $ballImg.css({"background": "rgb(255, 255, 255)", "box-shadow": "0 0 0px 10px rgb(11, 249, 251)"});
                 break;
-            case 9:
+            case 9: //fire
                 $ballImg.css({"background": "rgb(238, 78, 26)", "box-shadow": "0 0 0px 10px rgb(238, 78, 26)"});
                 break;
-            default:
+            case 10: //lightning
+                $ballImg.css({"background": "rgb(66, 133, 244)", "box-shadow": "0 0 0px 10px rgb(66, 133, 244)"});
+                break;
+            default: //basic
                 $ballImg.css({"background": "rgb(255, 255, 255)", "box-shadow": "0 0 0px 10px rgb(255, 255, 255)"});
         }
     }
