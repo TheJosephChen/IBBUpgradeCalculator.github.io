@@ -12,6 +12,7 @@
     var PURCHASE_COSTS = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"];
 
 
+    // On Document ready
     $(document).ready(function() {
             // disable calculator forms
             $("#upgrades input").prop("disabled", true);
@@ -41,7 +42,7 @@
     );
 
 
-    // Changes dropdown selection ball options according to which radio button 
+    // Change dropdown selection ball options according to which radio button 
     // is checked
     function displaySelection() {
 
@@ -112,7 +113,7 @@
         $("#upgrades input, select, button").prop("disabled", false);
     }
 
-    // resets all form input fields of the calculator
+    // Reset all form input fields of the calculator
     function resetCalculator() {
         document.getElementById("numForm").reset();
         document.getElementById("spdForm").reset();
@@ -124,6 +125,7 @@
         PERF_PRES_2 = false;
     }
 
+    // Populate dropdown with possible values
     function setSpeedDropdown() {
         $.each(speedLv, function(i, p) {
             $("#curLvS").append($('<option></option>').val(p).html(p));
@@ -131,7 +133,7 @@
         });
     }
 
-    // Calculates the total cost to upgrade from the starting to end level 
+    // Calculate the total cost to upgrade from the starting to end level 
     // based on user inputs for levels and cost
     function calculateLevelCost() {
         var curLv = parseInt($("#curLvN").val());
@@ -166,6 +168,8 @@
         $("#ballCost").text(totalCost);
     }
 
+    // Calculate the total cost to upgrade from the starting to end speed level 
+    // based on user inputs for levels, value, and cost
     function calculateSpeedCost() {
         var rawLv = $("#curLvS").val();
         var rawCost = $("#curCostS").val();
@@ -279,6 +283,8 @@
 
     }
 
+    // Calculate the total cost to upgrade from the starting to end power level 
+    // based on user inputs for levels, value, and cost
     function calculatePowerCost() {
         var curLv = parseInt($("#curLvP").val());
         var rawCost = $("#curCostP").val();
@@ -359,6 +365,7 @@
         $("#powCost").text(totalCost);      
     }
 
+    // Persists user's submitted purchase to a global array
     function recordPurchase() {
         var unlock = unlocks[RADIO_INDEX];
         var ball = allBallNames[CURRENT_BALL_INDEX];
@@ -379,6 +386,8 @@
         drawTable();
     }
 
+    // Calculates the total cost of all cost elements in a given array.
+    // Performs unit conversion.
     function sumCosts(costArr) {
         var sum = 0;
         for (var i = 0; i < costArr.length; i++) {
@@ -389,6 +398,7 @@
     }
 
 
+    // Draws the purchases table
     function drawTable() {
         clearTable();
         var table = $("#upgradeTable");
@@ -410,10 +420,12 @@
         table.append(costRow);
     }
 
+    // Clears the purchases table
     function clearTable() {
         $("#upgradeTable tbody tr").remove();
     }
 
+    // Deletes a row from the purchases table
     function removeRow() {
         var index = this.id.substring(this.id.length - 1);
         PURCHASES[index] = null;
@@ -421,6 +433,7 @@
         drawTable();
     }
 
+    // Styles display ball based on current user selection
     function drawBall() {
         $ballImg = $("#ballImage");
 

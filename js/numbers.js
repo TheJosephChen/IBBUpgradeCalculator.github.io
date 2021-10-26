@@ -1,5 +1,6 @@
 let letters = ["", "K", "M", "B", "T", "q", "Q", "s", "S", "O", "N", "D", "aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj", "ak", "al", "am", "an", "ao"];
 
+// Perform the conversion of numerical suffixes to the full numerical value
 function convertNumberLetter(number, letter) {
     var finalNum;
     var finalLet;
@@ -34,6 +35,7 @@ function convertNumberLetter(number, letter) {
     return  finalNum.toString() + finalLet;
 }
 
+// Perform the conversion of a numerical value to its suffixed format
 function reverseNumberLetter(number, letter) {
     
     if (letter == undefined || letter == "" || letter == null) {
