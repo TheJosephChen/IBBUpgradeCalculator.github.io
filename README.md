@@ -1,5 +1,7 @@
 # IBBUpgradeCalculator.github.io
 
+View deployment in https://thejosephchen.github.io/IBBUpgradeCalculator.github.io/
+
 Version 1.2
 Added new ball: Lightning ball (Available starting at 400B)
 Added new unlock tier: 80ac
